@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "admin-minpham-com",
+    "public": "build/dashboard",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
