@@ -4,16 +4,16 @@
 name: Deploy to Firebase Hosting
 on:
   push:
-    branches: [deploy]
+    branches: [develop]
 
 jobs:
-  build_and_deploy:
+  deploy:
     runs-on: ubuntu-latest
     env:
-      API_URI: ${{ secrets.API_URI }}
-      APP_MOUNT_URI: ${{ secrets.APP_MOUNT_URI }}
-      STATIC_URL: ${{ secrets.STATIC_URL }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      API_URI: ${{ secrets.DEV_API_URI }}
+      APP_MOUNT_URI: ${{ secrets.DEV_APP_MOUNT_URI }}
+      STATIC_URL: ${{ secrets.DEV_STATIC_URL }}
+      SENTRY_DSN: ${{ secrets.DEV_SENTRY_DSN }}
       IS_CLOUD_INSTANCE: true
 
     steps:
@@ -28,7 +28,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.MIN_COM_FIREBASE_SERVICE_ACCOUNT }}'
+          firebaseServiceAccount: '${{ secrets.DEV_FIREBASE_SERVICE_ACCOUNT }}'
           channelId: live
-          projectId: '${{ secrets.MIN_COM_PROJECT_ID }}'
-          target: '${{ secrets.MIN_COM_PROJECT_TARGET }}'
+          projectId: '${{ secrets.DEV_PROJECT_ID }}'
+          target: '${{ secrets.DEV_PROJECT_TARGET }}'
